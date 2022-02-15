@@ -2,14 +2,12 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\PersonDAO;
-
 class Person {
 
     private int $id;
     private string $pseudo;
     private string $mdp;
-    private Role $role;
+    private Autorisation $role;
 
     /**
      * Get the value of id

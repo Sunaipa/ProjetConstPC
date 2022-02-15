@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\BoitierDAO;
-
 class Boitier {
 
     private int $id;

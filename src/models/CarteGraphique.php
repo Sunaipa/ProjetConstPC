@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\CarteGraphiqueDAO;
-
 class CarteGraphique {
 
     private int $id;

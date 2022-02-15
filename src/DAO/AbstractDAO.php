@@ -3,20 +3,40 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use PDOStatement;
+use ProjetPC\interfaces\DAOInterface;
 
-class AbstractDAO {
-    private string $tableName = "";
-    private PDO $pdo;
+Abstract class AbstractDAO {
+    protected string $tableName = "";
+    protected PDOStatement $statement;
+    protected DAOInterface $object;
+    protected $objectList = [];
+    protected PDO $pdo;
 
-    public function __construct(PDO $pdo, string $tableName) {
+    public function __construct(PDO $pdo) {
         $this->pdo = $pdo;
-        $this->tableName = $tableName;
     }
 
-    function findAll(){
+    public function findAll(){
         $sql = "SELECT * FROM `{$this->tableName}` ";
         $this->statement = $this->pdo->prepare($sql);
         $this->statement->execute();
-        return $sql;
+        $data = $this->statement->fetchAll(PDO::FETCH_OBJ);
+
+        foreach($data as $row){
+            $objectList[] = $this->hydrate($row);
+        }
+
+        return $this->statement;
     }
+
+    public function findOneByID($id){
+        //TODO
+    }
+
+    public function find($id) {
+        //TODO
+    }
+
+     protected abstract function hydrate($row);
 }

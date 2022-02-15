@@ -5,13 +5,13 @@ namespace ProjetPC\DAO;
 use PDO;
 use ProjetPC\interfaces\DAOInterface;
 
-class SocketDAO extends AbstractDAO implements DAOInterface{
-    protected string $tableName = "boitier";
+class AutorisationDAO extends AbstractDAO implements DAOInterface{
+    protected string $tableName = "autorisation";
 
     public function __construct(PDO $pdo) {
         parent::__construct($pdo);
     }
-    
+
     public function hydrate($row) {
     }
 

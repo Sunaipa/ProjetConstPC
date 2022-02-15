@@ -2,9 +2,7 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\RoleDAO;
-
-class Role {
+class Autorisation {
 
     private int $id;
     private string $name;

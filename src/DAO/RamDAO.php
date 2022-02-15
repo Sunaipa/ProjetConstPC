@@ -2,6 +2,24 @@
 
 namespace ProjetPC\DAO;
 
-class RamDAO  {
+use PDO;
+use ProjetPC\interfaces\DAOInterface;
+
+class RamDAO extends AbstractDAO implements DAOInterface{
+    protected string $tableName = "ram";
+
+    public function __construct(PDO $pdo) {
+        parent::__construct($pdo);
+    }
     
+    public function hydrate($row) {
+    }
+
+    /**
+     * Get the value of tableName
+     */ 
+    public function getTableName():string
+    {
+        return $this->tableName;
+    }
 }

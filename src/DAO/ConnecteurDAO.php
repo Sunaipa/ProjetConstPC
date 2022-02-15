@@ -2,6 +2,24 @@
 
 namespace ProjetPC\DAO;
 
-class ConnecteurDAO {
+use PDO;
+use ProjetPC\interfaces\DAOInterface;
+
+class ConnecteurDAO extends AbstractDAO implements DAOInterface{
+    protected string $tableName = "connecteur";
+
+    public function __construct(PDO $pdo) {
+        parent::__construct($pdo);
+    }
     
+    public function hydrate($row) {
+    }
+
+    /**
+     * Get the value of tableName
+     */ 
+    public function getTableName():string
+    {
+        return $this->tableName;
+    }
 }

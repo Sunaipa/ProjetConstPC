@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\MarqueDAO;
-
 class Marque{
 
     private int $id;

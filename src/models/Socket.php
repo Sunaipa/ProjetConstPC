@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\SocketDAO;
-
 class Socket {
 
     private int $id;

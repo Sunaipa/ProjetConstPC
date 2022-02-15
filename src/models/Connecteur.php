@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\ConnecteurDAO;
-
 class Connecteur {
 
     private int $id;

@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\ProcessorDAO;
-
 class Processor {
 
     private int $id;

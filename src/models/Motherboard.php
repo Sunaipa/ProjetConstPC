@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\MotherboardDAO;
-
 class Motherboard {
 
     private int $id;

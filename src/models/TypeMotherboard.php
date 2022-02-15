@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\TypeMotherboardDAO;
-
 class TypeMotherboard {
 
     private int $id;

@@ -2,9 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\RamDAO;
-use ProjetPC\models\RamType;
-
 class RAM {
 
     private int $id;

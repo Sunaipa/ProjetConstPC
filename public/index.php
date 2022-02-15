@@ -21,6 +21,9 @@ $container = $builder->build();
 $container->set("twig", function(){
     return Twig::create("../views");
 });
+$container->set("pdo", function() use ($pdo){
+    return $pdo;
+});
 $app = Bridge::create($container);
 
 

@@ -2,8 +2,6 @@
 
 namespace ProjetPC\models;
 
-use ProjetPC\DAO\DdDAO;
-
 class Dd{
 
     private int $id;
