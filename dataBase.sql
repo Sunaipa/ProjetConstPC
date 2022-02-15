@@ -1,7 +1,7 @@
-CREATE TABLE ram_types(
-   Id_RAM_Types INT AUTO_INCREMENT,
+CREATE TABLE ram_type(
+   Id_RAM_Type INT AUTO_INCREMENT,
    name VARCHAR(15) NOT NULL,
-   PRIMARY KEY(Id_RAM_Types)
+   PRIMARY KEY(Id_RAM_Type)
 );
 
 CREATE TABLE socket(
@@ -28,24 +28,24 @@ CREATE TABLE type_motherboard(
    PRIMARY KEY(Id_type_motherboard)
 );
 
-CREATE TABLE role(
-   Id_role DECIMAL(15,2) AUTO_INCREMENT,
+CREATE TABLE autorisation(
+   Id_autorisation INT AUTO_INCREMENT,
    name VARCHAR(50) NOT NULL,
-   PRIMARY KEY(Id_role)
+   PRIMARY KEY(Id_autorisation)
 );
 
-CREATE TABLE motherboards(
-   Id_Motherboards INT AUTO_INCREMENT,
+CREATE TABLE motherboard(
+   Id_Motherboard INT AUTO_INCREMENT,
    name VARCHAR(55) NOT NULL,
    prix DECIMAL(15,2),
    chipset VARCHAR(20) NOT NULL,
    Id_type_motherboard INT NOT NULL,
    Id_marque INT NOT NULL,
-   Id_RAM_Types INT NOT NULL,
-   PRIMARY KEY(Id_Motherboards),
+   Id_RAM_Type INT NOT NULL,
+   PRIMARY KEY(Id_Motherboard),
    FOREIGN KEY(Id_type_motherboard) REFERENCES type_motherboard(Id_type_motherboard),
    FOREIGN KEY(Id_marque) REFERENCES marque(Id_marque),
-   FOREIGN KEY(Id_RAM_Types) REFERENCES ram_types(Id_RAM_Types)
+   FOREIGN KEY(Id_RAM_Type) REFERENCES ram_type(Id_RAM_Type)
 );
 
 CREATE TABLE ram(
@@ -55,10 +55,10 @@ CREATE TABLE ram(
    frequence VARCHAR(50) NOT NULL,
    quantite_GO INT NOT NULL,
    Id_marque INT NOT NULL,
-   Id_RAM_Types INT NOT NULL,
+   Id_RAM_Type INT NOT NULL,
    PRIMARY KEY(Id_RAM),
    FOREIGN KEY(Id_marque) REFERENCES marque(Id_marque),
-   FOREIGN KEY(Id_RAM_Types) REFERENCES ram_types(Id_RAM_Types)
+   FOREIGN KEY(Id_RAM_Type) REFERENCES ram_type(Id_RAM_Type)
 );
 
 CREATE TABLE boitier(
@@ -73,18 +73,18 @@ CREATE TABLE boitier(
 );
 
 CREATE TABLE socket_compatible(
-   Id_Motherboards INT,
+   Id_Motherboard INT,
    Id_socket INT,
-   PRIMARY KEY(Id_Motherboards, Id_socket),
-   FOREIGN KEY(Id_Motherboards) REFERENCES motherboards(Id_Motherboards),
+   PRIMARY KEY(Id_Motherboard, Id_socket),
+   FOREIGN KEY(Id_Motherboard) REFERENCES motherboard(Id_Motherboard),
    FOREIGN KEY(Id_socket) REFERENCES socket(Id_socket)
 );
 
 CREATE TABLE connecteur_possede(
-   Id_Motherboards INT,
+   Id_Motherboard INT,
    Id_connecteur INT,
-   PRIMARY KEY(Id_Motherboards, Id_connecteur),
-   FOREIGN KEY(Id_Motherboards) REFERENCES motherboards(Id_Motherboards),
+   PRIMARY KEY(Id_Motherboard, Id_connecteur),
+   FOREIGN KEY(Id_Motherboard) REFERENCES motherboard(Id_Motherboard),
    FOREIGN KEY(Id_connecteur) REFERENCES connecteur(Id_connecteur)
 );
 
@@ -124,24 +124,25 @@ CREATE TABLE person(
    Id_person INT AUTO_INCREMENT,
    pseudo VARCHAR(50) NOT NULL,
    mdp VARCHAR(20) NOT NULL,
-   Id_role DECIMAL(15,2) NOT NULL,
+   Id_autorisation INT NOT NULL,
    PRIMARY KEY(Id_person),
-   FOREIGN KEY(Id_role) REFERENCES role(Id_role)
+   FOREIGN KEY(Id_autorisation) REFERENCES autorisation(Id_autorisation)
 );
 
 CREATE TABLE configue(
    Id_configue INT AUTO_INCREMENT,
    name VARCHAR(50) NOT NULL,
    prix_total DECIMAL(15,2) NOT NULL,
+   description VARCHAR(300),
    Id_person INT NOT NULL,
    Id_carte_graphique INT NOT NULL,
-   Id_Motherboards INT NOT NULL,
+   Id_Motherboard INT NOT NULL,
    Id_Boitier INT NOT NULL,
    Id_processor INT NOT NULL,
    PRIMARY KEY(Id_configue),
    FOREIGN KEY(Id_person) REFERENCES person(Id_person),
    FOREIGN KEY(Id_carte_graphique) REFERENCES carte_graphique(Id_carte_graphique),
-   FOREIGN KEY(Id_Motherboards) REFERENCES motherboards(Id_Motherboards),
+   FOREIGN KEY(Id_Motherboard) REFERENCES motherboard(Id_Motherboard),
    FOREIGN KEY(Id_Boitier) REFERENCES boitier(Id_Boitier),
    FOREIGN KEY(Id_processor) REFERENCES processor(Id_processor)
 );
