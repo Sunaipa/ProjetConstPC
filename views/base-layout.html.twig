@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Build your PC{% endblock %}
+		</title>
+		{% block css %}<link rel="stylesheet" href="/assets/bootstrap.min.css">{% endblock %}
+		{% block js %}<script src="/assets/bootstrap.min.js"></script>{% endblock %}
+	</head>
+	<body>
+		<header>
+			<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+				<ul class="navbar-nav">
+					<li class="nav-item active">
+						<a class="nav-link" href="/home">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/build">Build</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/connect">Connection</a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<div class="row justify-content-center">
+			<div class="col-md-8 p-4"> 
+            {% block content %}{% endblock %}
+			</div>
+        </div>
+		</body>
+	</html>
