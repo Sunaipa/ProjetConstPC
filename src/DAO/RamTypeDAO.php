@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\RamType;
 use ProjetPC\interfaces\DAOInterface;
 
 class RamTypeDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,10 @@ class RamTypeDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+        $ramType = new RamType();
+        $ramType->setId($row->Id_ram_type);
+        $ramType->setName($row->name);
+        return $ramType;
     }
 
     /**

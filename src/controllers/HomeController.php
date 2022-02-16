@@ -12,11 +12,13 @@ class HomeController extends AbstractController {
         //instanciation du DAO configueDAO
         $daoConfigue = new ConfigueDAO($this->container->get("pdo"));
 
-        $allConfigue = $daoConfigue->findAll();
+        $allConfigues = $daoConfigue->findAllFromAdmin();
+
         
         return $this->render(
             $response, 
-            "home.twig"
+            "home.twig",
+            ["allConfigues" => $allConfigues]
         );
     }
 }

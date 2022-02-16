@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Boitier {
+use ProjetPC\interfaces\EntityInterface;
+
+class Boitier implements EntityInterface{
 
     private int $id;
     private string $name;

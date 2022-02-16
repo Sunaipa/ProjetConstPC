@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\Processor;
 use ProjetPC\interfaces\DAOInterface;
 
 class ProcessorDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,15 @@ class ProcessorDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+        $sDAO = new SocketDAO($this->pdo);
+        
+        $processor = new Processor();
+        $processor->setId($row->Id_processor);
+        $processor->setName($row->name);
+        $processor->setPrix($row->prix);
+        $processor->setSocket($sDAO->findByID($row->Id_processor));
+
+        return $processor;
     }
 
     /**

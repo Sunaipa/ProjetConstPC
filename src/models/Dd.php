@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Dd{
+use ProjetPC\interfaces\EntityInterface;
+
+class Dd implements EntityInterface {
 
     private int $id;
     private string $name;

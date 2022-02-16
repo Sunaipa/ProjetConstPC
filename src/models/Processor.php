@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Processor {
+use ProjetPC\interfaces\EntityInterface;
+
+class Processor implements EntityInterface{
 
     private int $id;
     private string $name;

@@ -2,12 +2,14 @@
 
 namespace ProjetPC\models;
 
-class Person {
+use ProjetPC\interfaces\EntityInterface;
+
+class Person implements EntityInterface{
 
     private int $id;
     private string $pseudo;
     private string $mdp;
-    private Autorisation $role;
+    private Autorisation $autorisation;
 
     /**
      * Get the value of id
@@ -69,18 +71,18 @@ class Person {
     /**
      * Get the value of role
      */ 
-    public function getRole():Role
+    public function getAutorisation():Autorisation
     {
-        return $this->role;
+        return $this->autorisation;
     }
     /**
      * Set the value of role
      *
      * @return  self
      */ 
-    public function setRole(Role $role):self
+    public function setAutorisation(Autorisation $autorisation):self
     {
-        $this->role = $role;
+        $this->autorisation = $autorisation;
 
         return $this;
     }

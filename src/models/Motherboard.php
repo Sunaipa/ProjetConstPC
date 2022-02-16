@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Motherboard {
+use ProjetPC\interfaces\EntityInterface;
+
+class Motherboard implements EntityInterface{
 
     private int $id;
     private string $name;

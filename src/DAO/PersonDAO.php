@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\Person;
 use ProjetPC\interfaces\DAOInterface;
 
 class PersonDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,23 @@ class PersonDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+        $aDAO = new AutorisationDAO($this->pdo);
+
+        $person = new Person();
+        $person->setId($row->Id_person);
+        $person->setPseudo($row->pseudo);
+        $person->setMdp($row->mdp ?? "default");
+        $person->setAutorisation($aDAO->findByID($row->Id_person));
+
+        return $person;
+    }
+
+    public function findSecuredByID($id) {
+        $sql = "SELECT Id_person, pseudo, Id_autorisation FROM `{$this->tableName}` WHERE `Id_{$this->tableName}` = ? ";
+        $this->statement = $this->pdo->prepare($sql);
+        $this->statement->execute([$id]);
+
+        return $this->statementAsHydratedObject();
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\CarteGraphique;
 use ProjetPC\interfaces\DAOInterface;
 
 class CarteGraphiqueDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,13 @@ class CarteGraphiqueDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+
+        $carteGraphique = new CarteGraphique();
+        $carteGraphique->setId($row->Id_carte_graphique);
+        $carteGraphique->setName($row->name);
+        $carteGraphique->setPrix($row->prix);
+
+        return $carteGraphique;
     }
 
     /**

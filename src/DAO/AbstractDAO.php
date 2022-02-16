@@ -21,22 +21,35 @@ Abstract class AbstractDAO {
         $sql = "SELECT * FROM `{$this->tableName}` ";
         $this->statement = $this->pdo->prepare($sql);
         $this->statement->execute();
+        
+        return $this->statementAsHydratedObject();
+    }
+
+    public function findByID($id){
+        $sql = "SELECT * FROM `{$this->tableName}` WHERE `Id_{$this->tableName}` = ? ";
+        $this->statement = $this->pdo->prepare($sql);
+        $this->statement->execute([$id]);
+
+        return $this->statementAsHydratedObject();
+    }
+
+     protected function statementAsHydratedObject(){
         $data = $this->statement->fetchAll(PDO::FETCH_OBJ);
+        if(count($data) > 1 ) {
+           foreach($data as $row){
+                $objectList[] = $this->hydrate($row);
+            } 
+            return $objectList; 
+        } else {
+            foreach($data as $row){
+                $object = $this->hydrate($row);
+            } 
+            return $object;
+        } 
+     }
 
-        foreach($data as $row){
-            $objectList[] = $this->hydrate($row);
-        }
-
-        return $this->statement;
-    }
-
-    public function findOneByID($id){
-        //TODO
-    }
-
-    public function find($id) {
-        //TODO
-    }
-
+     protected function getFirst() {
+        
+     }
      protected abstract function hydrate($row);
 }

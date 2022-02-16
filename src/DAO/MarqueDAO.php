@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\Marque;
 use ProjetPC\interfaces\DAOInterface;
 
 class MarqueDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,10 @@ class MarqueDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+        $marque = new Marque();
+        $marque->setId($row->Id_marque);
+        $marque->setName($row->name);
+        return $marque;
     }
 
     /**

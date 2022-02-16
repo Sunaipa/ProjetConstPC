@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Autorisation {
+use ProjetPC\interfaces\EntityInterface;
+
+class Autorisation implements EntityInterface{
 
     private int $id;
     private string $name;

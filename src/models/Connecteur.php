@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Connecteur {
+use ProjetPC\interfaces\EntityInterface;
+
+class Connecteur implements EntityInterface {
 
     private int $id;
     private string $name;

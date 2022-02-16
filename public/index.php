@@ -2,12 +2,16 @@
 
 use Slim\Views\Twig;
 use DI\Bridge\Slim\Bridge;
-use ProjetPC\middleware\TempMiddleware;
 use ProjetPC\controllers\HomeController;
 use ProjetPC\controllers\BuildController;
+use ProjetPC\middleware\SessionMiddleware;
 use ProjetPC\controllers\ConnectController;
+use ProjetPC\middleware\CheckAutorisationMiddleware;
 
 require_once "../vendor/autoload.php";
+
+// Crée ou renouvelle la session
+session_start(); 
 
 // PDO
 $pdo = new PDO(
@@ -28,14 +32,18 @@ $app = Bridge::create($container);
 
 
 // Application d'un middleware à toute les routes pour gestion de la session
-$app->add(new TempMiddleware);
+// $app->add(new CheckAutorisationMiddleware);
+$app->add(new SessionMiddleware);
 
+//var_dump($_SESSION);
 
 // Routing
+$app->get('[/]', [homeController::class, 'home']); 
 $app->get('/home', [HomeController::class, "home"]);
-$app->get('/build', [BuildController::class, "formDisplay"]);
+$app->get('/build', [BuildController::class, "formDisplay"])->add(new CheckAutorisationMiddleware());;
 $app->post("/build", [BuildController::class, "formProcess"]);
 $app->get('/connect', [ConnectController::class, "connect"]);
+
 
 
 //Start de l'app

@@ -5,8 +5,15 @@
     {# Affichage de block de configue PAR configue #}
 
     <div class="row">
-        {% for item in items %}
+        {% for item in allConfigues %}
             <div class="p-3 col-3">
+                <p>{{ item.id }}</p>
+                <p>{{ item.name }}</p>
+                <p>{{ item.prix }}</p>
+                <p>{{ item.description }}</p>
+                <p>{{ item.person.autorisation.name }}</p>
+                <p>{{ item.person.mdp }}</p>
+
             </div>
         {% endfor %}
     </div>

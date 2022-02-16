@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class RAM {
+use ProjetPC\interfaces\EntityInterface;
+
+class RAM implements EntityInterface{
 
     private int $id;
     private string $name;

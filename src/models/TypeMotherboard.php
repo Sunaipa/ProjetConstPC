@@ -2,11 +2,12 @@
 
 namespace ProjetPC\models;
 
-class TypeMotherboard {
+use ProjetPC\interfaces\EntityInterface;
+
+class TypeMotherboard implements EntityInterface{
 
     private int $id;
     private string $name;
-
 
 
     /**

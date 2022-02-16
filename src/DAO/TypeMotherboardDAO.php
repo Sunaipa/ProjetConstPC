@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\TypeMotherboard;
 use ProjetPC\interfaces\DAOInterface;
 
 class TypeMotherboardDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,10 @@ class TypeMotherboardDAO extends AbstractDAO implements DAOInterface{
     }
     
     public function hydrate($row) {
+        $typeMotherboard = new TypeMotherboard();
+        $typeMotherboard->setId($row->Id_type_motherboard);
+        $typeMotherboard->setName($row->name);
+        return $typeMotherboard;
     }
 
     /**

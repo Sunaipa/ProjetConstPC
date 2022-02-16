@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class CarteGraphique {
+use ProjetPC\interfaces\EntityInterface;
+
+class CarteGraphique implements EntityInterface {
 
     private int $id;
     private string $name;

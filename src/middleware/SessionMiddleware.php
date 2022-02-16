@@ -5,23 +5,24 @@ namespace ProjetPC\middleware;
 use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\RequestInterface;
 
-class TempMiddleware  {
+class SessionMiddleware  {
     
 
     public function __construct(){
     }
 
     public function __invoke(RequestInterface $request, RequestHandlerInterface $handler)  {
+         
 
-        // $key = filter_input(INPUT_GET, "key");
-        // if($key != $this->key1) {
-        //     throw new \Exception("Clef non valide"); 
-        // }
-        $response = $handler->handle($request);
+        //Check si la session a un profil associé
+        if(!array_key_exists('autorisation', $_SESSION)){
+            //identifie la session en tant qu'annonyme
+            $_SESSION['autorisation'] = 3;
+            $_SESSION['pseudo'] = 'ANON';
+        }
+ 
+        $response = $handler->handle($request);        
         return $response;
-
-
-
         /*
             TODO GESTION DE SESSION / verif si connecté
         */

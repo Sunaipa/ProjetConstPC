@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Socket {
+use ProjetPC\interfaces\EntityInterface;
+
+class Socket implements EntityInterface {
 
     private int $id;
     private string $name;

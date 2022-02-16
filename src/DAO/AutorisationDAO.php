@@ -3,6 +3,7 @@
 namespace ProjetPC\DAO;
 
 use PDO;
+use ProjetPC\models\Autorisation;
 use ProjetPC\interfaces\DAOInterface;
 
 class AutorisationDAO extends AbstractDAO implements DAOInterface{
@@ -13,6 +14,10 @@ class AutorisationDAO extends AbstractDAO implements DAOInterface{
     }
 
     public function hydrate($row) {
+        $autorisation = new Autorisation();
+        $autorisation->setId($row->Id_autorisation);
+        $autorisation->setName($row->name);
+        return $autorisation;
     }
 
     /**

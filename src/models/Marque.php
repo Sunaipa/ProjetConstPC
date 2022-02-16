@@ -2,7 +2,9 @@
 
 namespace ProjetPC\models;
 
-class Marque{
+use ProjetPC\interfaces\EntityInterface;
+
+class Marque implements EntityInterface {
 
     private int $id;
     private string $name;
