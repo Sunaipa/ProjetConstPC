@@ -13,7 +13,6 @@ class HomeController extends AbstractController {
         $daoConfigue = new ConfigueDAO($this->container->get("pdo"));
 
         $allConfigues = $daoConfigue->findAllFromAdmin();
-
         
         return $this->render(
             $response, 
